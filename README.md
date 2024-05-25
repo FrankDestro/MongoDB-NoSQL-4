@@ -1,5 +1,8 @@
 # Workshop Spring Boot MongoDB DevSuperior
 
+* MongoDB 7.0.9 | Docker 24.0 | Mongosh 2.2.5 | MongoDB Compass 1.43.0
+
+
 ### Modelo conceitual desenvolvido no workhsop DevSuperior MongoDB.
 
 https://docs.google.com/document/d/1CCWaBMSpMtQtJSLDAukO5GhBwZgm2MY3pify79Gl_MU/edit?usp=sharing
