@@ -7,6 +7,8 @@
 
 https://docs.google.com/document/d/1CCWaBMSpMtQtJSLDAukO5GhBwZgm2MY3pify79Gl_MU/edit?usp=sharing
 
+projetos devsuperior - https://github.com/devsuperior/nosql
+
 ### Container Docker do MongoDB para desenvolvimento
 ```
 docker run -d -p 27017:27017 -v /data/db --name mongo1 mongo:4.4.3-bionic
