@@ -9,12 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @EqualsAndHashCode
-@Builder
 
 @Document(collection = "users")
 public class User implements Serializable {
@@ -28,4 +28,9 @@ public class User implements Serializable {
     @DBRef(lazy = true)
     public List<Post> posts = new ArrayList<>();
 
+    public User(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
 }

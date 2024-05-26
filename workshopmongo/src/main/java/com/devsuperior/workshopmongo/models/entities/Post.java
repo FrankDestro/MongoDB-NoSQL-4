@@ -10,10 +10,10 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @EqualsAndHashCode
 
 @Document(collection = "posts")
@@ -24,10 +24,16 @@ public class Post {
     private Instant moment;
     private String title;
     private String body;
-
     private Author author;
-
     private List<Comment> comments =  new ArrayList<>();
 
+    public Post(String id, Instant moment, String title, String body, Author author) {
+        this.id = id;
+        this.moment = moment;
+        this.title = title;
+        this.body = body;
+        this.author = author;
+        this.comments = new ArrayList<>();
+    }
 }
 
