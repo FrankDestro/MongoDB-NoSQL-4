@@ -185,3 +185,35 @@ https://docs.spring.io/spring-data/mongodb/docs/current/reference/html
 ### Localização dos volumes Docker no Windows
 
 https://stackoverflow.com/questions/43181654/locating-data-volumes-in-docker-desktop-windows
+
+### 
+
+```js 
+@Document(collection = "users")
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private String id;
+    private String name;
+    private String email;
+
+    @DBRef(lazy = true)  
+    public List<Post> posts = new ArrayList<>();
+
+    public User(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+}
+
+```
+#### 
+A anotação @Document é usada no Spring Data MongoDB para indicar que uma classe é um documento MongoDB.
+
+A anotação @DBRef no Spring Data MongoDB é usada para criar referências entre documentos em diferentes coleções. O atributo lazy dessa anotação especifica se os documentos referenciados devem ser buscados de forma imediata (eager) ou preguiçosa (lazy).
+
+* Carregamento Imediato (lazy = false): Quando lazy é definido como false (que é o padrão), os documentos referenciados são carregados imediatamente com o documento principal. Isso significa que sempre que você carrega um documento que contém um campo @DBRef, os documentos referenciados também serão carregados ao mesmo tempo.
+
+* Carregamento Preguiçoso (lazy = true): Quando lazy é definido como true, os documentos referenciados são carregados apenas quando são acessados pela primeira vez. Isso pode melhorar o desempenho ao reduzir a quantidade de dados buscados no banco de dados quando não são necessários imediatamente.
