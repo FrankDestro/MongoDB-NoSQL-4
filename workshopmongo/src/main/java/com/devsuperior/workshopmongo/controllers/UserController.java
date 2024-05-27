@@ -44,4 +44,10 @@ public class UserController {
         UserDTO obj = userService.update(id, userDTO);
         return ResponseEntity.ok().body(obj);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<UserDTO> update (@PathVariable  String id) {
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

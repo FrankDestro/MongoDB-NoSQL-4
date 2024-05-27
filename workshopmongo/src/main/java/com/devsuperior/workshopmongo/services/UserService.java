@@ -40,6 +40,10 @@ public class UserService {
         return new UserDTO(userEntity);
     }
 
+    public void delete (String id) {
+        getEntityById(id);
+        userRepository.deleteById(id);
+    }
 
     private User getEntityById(String id) {
         Optional<User> result = userRepository.findById(id);
