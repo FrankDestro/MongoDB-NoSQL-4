@@ -1,6 +1,8 @@
 package com.devsuperior.workshopmongo.services;
 
+import com.devsuperior.workshopmongo.models.dto.PostDTO;
 import com.devsuperior.workshopmongo.models.dto.UserDTO;
+import com.devsuperior.workshopmongo.models.entities.Post;
 import com.devsuperior.workshopmongo.models.entities.User;
 import com.devsuperior.workshopmongo.repositories.UserRepository;
 import com.devsuperior.workshopmongo.services.exceptions.ResourceNotFoundException;
@@ -46,15 +48,22 @@ public class UserService {
     }
 
     private User getEntityById(String id) {
-        Optional<User> result = userRepository.findById(id);
-        User userEntity = result.orElseThrow(() -> new ResourceNotFoundException("Id not found"));
-        return userEntity;
+        try {
+            Optional<User> result = userRepository.findById(id);
+            return result.orElseThrow(() -> new ResourceNotFoundException("Id not found"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public List<PostDTO> getUserPosts (String id) {
+        User user = getEntityById(id);
+        return user.getPosts().stream().map(x -> (new PostDTO(x))).toList();
     }
 
     private void copyDtoToEntity(UserDTO userDTO, User userEntity) {
         userEntity.setName(userDTO.getName());
         userEntity.setEmail(userDTO.getEmail());
     }
-
 }
 

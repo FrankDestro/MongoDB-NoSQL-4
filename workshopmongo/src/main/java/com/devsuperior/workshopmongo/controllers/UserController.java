@@ -1,5 +1,6 @@
 package com.devsuperior.workshopmongo.controllers;
 
+import com.devsuperior.workshopmongo.models.dto.PostDTO;
 import com.devsuperior.workshopmongo.models.dto.UserDTO;
 import com.devsuperior.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -49,5 +49,11 @@ public class UserController {
     public ResponseEntity<UserDTO> update (@PathVariable  String id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<PostDTO>> getUserPosts(@PathVariable String id) {
+        List<PostDTO> list = userService.getUserPosts(id);
+        return ResponseEntity.ok().body(list);
     }
 }
