@@ -7,8 +7,11 @@ import com.devsuperior.workshopmongo.services.exceptions.ResourceNotFoundExcepti
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
+import java.util.zip.DataFormatException;
 
 @Service
 public class PostService {
@@ -29,6 +32,22 @@ public class PostService {
     public List<PostDTO> findByTitle(String text) {
         List<Post> list = postRepository.searchTitle(text);
         return list.stream().map(x -> new PostDTO(x)).toList();
+    }
+
+    public List<PostDTO> fullSearch(String text, String start, String end) {
+        Instant startMoment = convertMoment(start, Instant.ofEpochMilli(0L));
+        Instant endMoment = convertMoment(end, Instant.now());
+
+        List<Post> list = postRepository.fullSearch(text, startMoment, endMoment);
+        return list.stream().map(x -> new PostDTO(x)).toList();
+    }
+
+    private Instant convertMoment(String priginalString, Instant alternative) {
+        try {
+            return Instant.parse(priginalString);
+        } catch (DateTimeParseException e) {
+            return alternative;
+        }
     }
 }
 
