@@ -217,3 +217,11 @@ A anotação @DBRef no Spring Data MongoDB é usada para criar referências entr
 * Carregamento Imediato (lazy = false): Quando lazy é definido como false (que é o padrão), os documentos referenciados são carregados imediatamente com o documento principal. Isso significa que sempre que você carrega um documento que contém um campo @DBRef, os documentos referenciados também serão carregados ao mesmo tempo.
 
 * Carregamento Preguiçoso (lazy = true): Quando lazy é definido como true, os documentos referenciados são carregados apenas quando são acessados pela primeira vez. Isso pode melhorar o desempenho ao reduzir a quantidade de dados buscados no banco de dados quando não são necessários imediatamente.
+
+### Introdução NoSQL
+
+[![Image](https://img.youtube.com/vi/c6h5eR0TvfU/mqdefault.jpg "Vídeo no Youtube")](https://youtu.be/c6h5eR0TvfU)
+
+### Vídeo sobre tratamento de exceções
+
+[![Image](https://img.youtube.com/vi/MAv7xgnSD-s/mqdefault.jpg "Vídeo no Youtube")](https://youtu.be/MAv7xgnSD-s)
