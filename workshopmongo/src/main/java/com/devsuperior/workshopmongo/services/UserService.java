@@ -52,6 +52,7 @@ public class UserService {
             Optional<User> result = userRepository.findById(id);
             return result.orElseThrow(() -> new ResourceNotFoundException("Id not found"));
         } catch (Exception e) {
+
             throw e;
         }
     }
