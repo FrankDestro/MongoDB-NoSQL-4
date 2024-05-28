@@ -7,6 +7,7 @@ import com.devsuperior.workshopmongo.services.exceptions.ResourceNotFoundExcepti
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,11 @@ public class PostService {
     private Post getEntityById(String id) {
         Optional<Post> result = postRepository.findById(id);
         return result.orElseThrow(() -> new ResourceNotFoundException("Id not found"));
+    }
+
+    public List<PostDTO> findByTitle(String text) {
+        List<Post> list = postRepository.findByTitleContainingIgnoreCase(text);
+        return list.stream().map(x -> new PostDTO(x)).toList();
     }
 }
 
